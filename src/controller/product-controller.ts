@@ -3,7 +3,7 @@ import {Product} from "../model/product";
 
 class ProductController {
     getAll = async (req: Request, res: Response) => {
-        let products = await Product.find().populate('category', 'name');
+        let products = await Product.find().populate('category')
         res.status(200).json(products);
     }
 
@@ -11,7 +11,7 @@ class ProductController {
        try {
            let product = req.body;
            product = await Product.create(product);
-           let newProduct = await Product.findById(product._id).populate('category', 'name');
+           let newProduct = await  Product.findById(product._id).populate('category')
            res.status(201).json(newProduct);
        }catch (error){
            next(error);
@@ -36,7 +36,7 @@ class ProductController {
     getProduct = async (req: Request, res: Response, next: NextFunction) => {
         let id = req.params.id;
         try {
-            let product = await Product.findById(id).populate('category', 'name');
+            let product = await Product.findById(id).populate('category');
             if (!product) {
                 res.status(404).json();
             } else {
@@ -58,7 +58,7 @@ class ProductController {
                 _id: id
             }, data);
             data._id = id;
-            product = await Product.findById(id).populate('category','name');
+            product = await Product.findById(id).populate('category');
             res.status(200).json(product);
         }
     }
