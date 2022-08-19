@@ -3,6 +3,7 @@ import {User} from "../model/user";
 import Validate from "./checkSignup"
 import jwt from 'jsonwebtoken';
 import {SECRET_KEY} from "../middleware/auth";
+
 class AuthController {
     register = async (req, res) => {
         let err = '';

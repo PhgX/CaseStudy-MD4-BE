@@ -10,7 +10,11 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 const DB_URL = "mongodb+srv://ProjectMD4:Jenj76EHqz8gfRnM@cluster0.pebdgeg.mongodb.net/CaseStudy-MD4?retryWrites=true&w=majority";
-mongoose.connect(DB_URL)
+mongoose.connect(DB_URL).then(() => {
+    console.log('DB Connected!')
+}).catch(e => {
+    console.log(e);
+})
 // mongoose.connect('mongodb://localhost:27017/product_management').then(() => {
 //     console.log('Connect success!')
 // }).catch(e => {
