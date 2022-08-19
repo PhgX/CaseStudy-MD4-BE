@@ -32,7 +32,6 @@ class ProductController {
             next(error);
         }
     }
-
     getProduct = async (req: Request, res: Response, next: NextFunction) => {
         let id = req.params.id;
         try {

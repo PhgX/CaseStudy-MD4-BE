@@ -31,7 +31,6 @@ class RestaurantController {
             next(error);
         }
     }
-
     getRestaurant = async (req: Request, res: Response, next: NextFunction) => {
         let id = req.params.id;
         try {

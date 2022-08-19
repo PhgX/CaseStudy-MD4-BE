@@ -31,7 +31,6 @@ class CategoryController {
             next(error);
         }
     }
-
     getCategory = async (req: Request, res: Response, next: NextFunction) => {
         let id = req.params.id;
         try {
