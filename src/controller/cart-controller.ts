@@ -7,6 +7,18 @@ import { OrderDetail } from "../model/orderDetail";
 
 
 class CartController {
+    getAll = async (req: Request, res: Response) => {
+        let data = decodeToken.decodeToken(req, res);
+        let userId = data.id;
+        let products = await Product.find().populate('tag').populate('category')
+            .populate('restaurant')
+            .populate('discount');
+        // products.userId = userId;
+        res.status(200).json({
+            products : products,
+            userId: userId
+        });
+    }
     createNewOrder = async(req: Request, res: Response) => {
         let Cart = [];
         
