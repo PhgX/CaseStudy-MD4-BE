@@ -11,22 +11,12 @@ class DecodeToken {
         let accessToken = authorization.split(' ')[1];
         decodeData = jwt_decode(accessToken);
         console.log('decodeData', decodeData);
-        
-        // if (!accessToken) {
-        //     decodeData = -1;
-        // } else {
-        //     jwt.verify(accessToken, SECRET_KEY, (err, data) => {
-        //         if (err) {
-        //             decodeData = -1;
-        //         } else {
-        //             decodeData = data;
-        //         }
-        //     });
-        // }
     } else {
         decodeData = -1;
     }
+    console.log(decodeData);
+    
     return decodeData;
     }
 }
-export default new DecodeToken;
+export default new DecodeToken();

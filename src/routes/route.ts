@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authRoute } from "./auth-route";
 import { categoryRoute } from "./category-route";
+import { customerOrderRoute } from "./customerOrder-route";
 import { discountRoute } from "./discount-route";
 import { orderRoute } from "./order-route";
 import { orderDetailRoute } from "./orderDetail-route";
@@ -12,6 +13,7 @@ import { userRoute } from "./user-route";
 
 
 export const router = Router();
+
 router.use('/products',productRoute);
 router.use('/users',userRoute);
 router.use('/roles', roleRoute);
@@ -21,6 +23,7 @@ router.use('/restaurants', restaurantRoute);
 router.use('/orderDetails', orderDetailRoute);
 router.use('/orders', orderRoute);
 router.use('/discounts', discountRoute);
+router.use('/list', customerOrderRoute)
 router.use('',authRoute);
 
 
