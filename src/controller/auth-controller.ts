@@ -37,35 +37,35 @@ class AuthController {
                     err: err
                 });
             } else if (Validate.ValidatePassword(password, repassword) == false) {
-                err = 'Passwords from 6 to 20 characters, including at least 1 special character, 1 uppercase letter, 1 lowercase letter!'
+                err = 'Mật khẩu từ 6 đến 20 ký tự, có bao gồm ít nhất 1 ký tự đặc biệt, 1 chữ in hoa, 1 chữ thường!'
                 res.status(201).json({
                     status: 'fail',
                     err: err
                 });
                 console.log('Mật khẩu từ 6 đến 20 ký tự, có bao gồm ít nhất 1 ký tự đặc biệt, 1 chữ in hoa, 1 chữ thường!');
             } else if (Validate.passwordMatch(password, repassword) == false) {
-                err = 'Incorrect password confirmation!'
+                err = 'Mật khẩu và mật khẩu xác nhận không khớp!'
                 res.status(201).json({
                     status: 'fail',
                     err: err
                 });
                 console.log('Mật khẩu và mật khẩu xác nhận không khớp!');
             } else if (Validate.ValidateEmail(email) == false) {
-                err = 'Wrong email format, Example : myemail@gmail.com'
+                err = 'Sai định dạng email, email có dạng : myemail@gmail.com!'
                 res.status(201).json({
                     status: 'fail',
                     err: err
                 });
                 console.log('Sai định dạng email, email có dạng : myemail@gmail.com!')
             } else if (await Validate.checkEmail(email) == false) {
-                err = 'Email already used!'
+                err = 'Email đã được sử dụng!'
                 res.status(201).json({
                     status: 'fail',
                     err: err
                 });
                 console.log('Email đã được sử dụng!')
             } else if (Validate.ValidatePhone(phone) == false) {
-                err = 'Please enter your phone number in 10 digits!'
+                err = 'Xin nhập số điện thoại của bạn bằng 10 chữ số!'
                 res.status(201).json({
                     status: 'fail',
                     err: err
