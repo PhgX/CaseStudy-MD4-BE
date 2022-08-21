@@ -4,4 +4,8 @@ import discountController from "../controller/discount-controller";
 export const discountRoute = Router();
 discountRoute.get('', discountController.getAll);
 discountRoute.post('/create', discountController.addNewDiscount);
+<<<<<<< HEAD
 // discountRoute.delete('/:id',discountController.)
+=======
+discountRoute.delete('/:id',discountController.delete);
+>>>>>>> dev

@@ -21,6 +21,7 @@ class DiscountController {
             next(err);
         }
     }
+    
     delete =async (req: Request, res : Response) => {
         
     }

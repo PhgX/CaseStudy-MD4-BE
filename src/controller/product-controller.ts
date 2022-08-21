@@ -1,12 +1,15 @@
 import { NextFunction, Request, response, Response } from "express";
 import { Product } from "../model/product";
+import decodeToken from "./decodeToken";
 
 class ProductController {
     getAll = async (req: Request, res: Response) => {
         let products = await Product.find().populate('tag').populate('category')
             .populate('restaurant')
             .populate('discount');
-        res.status(200).json(products);
+        // products.userId = userId;
+        res.status(200).json(
+            products);
     }
 
     deleteProduct = async (req: Request, res: Response, next: NextFunction) => {

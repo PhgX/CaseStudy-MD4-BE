@@ -8,21 +8,21 @@ export const checkIsAdmin = (req, res, next) => {
         let accessToken = authorization.split(' ')[1];
         if (!accessToken) {
             res.status(401).json({
-                message: 'You are anonymous'
+                message: 'Xin hãy đăng nhập!'
             });
         } else {
             jwt.verify(accessToken, SECRET_KEY, (err, data) => {
                 if (err) {
                     res.status(401).json({
                         error: err.message,
-                        message: 'You are anonymous'
+                        message: 'Xin hãy đăng nhập!'
                     });
                 } else {
                     if (data.role === 'admin') {
                         next();
                     } else {
                         res.status(401).json({
-                            message: 'you are not admin'
+                            message: 'Bạn không có quyền truy cập!'
                         });
                     }                 
                 }
@@ -30,7 +30,7 @@ export const checkIsAdmin = (req, res, next) => {
         }
     } else {
         res.status(401).json({
-            message: 'You are anonymous'
+            message: 'Xin hãy đăng nhập!'
         });
     }
 }

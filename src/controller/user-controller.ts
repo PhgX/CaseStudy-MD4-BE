@@ -4,9 +4,11 @@ import { User } from "../model/user";
 class UserController {
     getAll = async (req: Request, res: Response) => {
         let users = await User.find().populate('role','name');
+        console.log(users)
         res.status(200).json(users)
     }
 
+   
     deleteUser = async (req: Request, res: Response, next : NextFunction) => {
         console.log(1);        
         try {

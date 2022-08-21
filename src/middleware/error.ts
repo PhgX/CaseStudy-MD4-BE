@@ -1,6 +1,8 @@
+import { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
+import { Error } from 'mongoose';
 
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err : Error, req : Request, res : Response, next : NextFunction) => {
     fs.writeFile("./log.txt", err.message, function (err) {
         if (err) {
             return console.log(err);
