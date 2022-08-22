@@ -1,11 +1,14 @@
-import {NextFunction, Request, Response} from "express";
-import {Restaurant} from "../model/restaurant"
+
+import { Request, Response, NextFunction } from 'express';
+import { Restaurant } from "../model/restaurant";
+
 
 class RestaurantController {
     getAll = async (req: Request, res: Response) => {
         let restaurants = await Restaurant.find();
         res.status(200).json(restaurants);
     }
+
 
     addRestaurant = async (req: Request, res: Response, next: NextFunction) => {
        try {
@@ -17,16 +20,33 @@ class RestaurantController {
        }
     }
 
+    // deleteRestaurant = async (req: Request, res: Response, next: NextFunction) => {
+    //     let id = req.params.id;
+    //     try {
+    //         let restaurant = await Restaurant.findById(id);
+    //         if (!Restaurant) {
+    //             res.status(404).json();
+    //         } else {
+    //             restaurant.delete();
+    //             res.status(204).json();
+    //         }
+
     deleteRestaurant = async (req: Request, res: Response, next: NextFunction) => {
-        let id = req.params.id;
         try {
-            let restaurant = await Restaurant.findById(id);
-            if (!Restaurant) {
-                res.status(404).json();
-            } else {
-                restaurant.delete();
-                res.status(204).json();
+            let allStoreId = req.body._id;
+            // console.log(allStoreId);
+            let flag = 1;
+            for (let i = 0; i < allStoreId.length; i++) {
+                let restaurant = await Restaurant.findById(allStoreId[i]);
+                console.log(restaurant);
+                if (!restaurant) {
+                    flag = -1;
+                }
             }
+            if (flag === 1) {
+                await Restaurant.deleteMany({ _id: allStoreId });
+            }
+            res.status(201).json({});
         } catch (error) {
             next(error);
         }
@@ -62,3 +82,7 @@ class RestaurantController {
 }
 
 export default new RestaurantController();
+
+
+
+
