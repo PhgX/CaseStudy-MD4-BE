@@ -58,6 +58,20 @@ class CartController {
             newOrderDetail : newOrderDetail
         })
     }
+    addToCart =async (req: Request, res: Response) => {
+        let data = req.body;
+        let userId = data.userId;
+        let order = await Order.find({user: userId})
+        if (!order) {
+            let neworder = await Order.create(
+                {
+                    user: userId,
+                    status: 'pending',
+                    totalPrice: 0
+                }
+            )
+        }
+    }
 
     
     // addToCart = async (req: Request, res: Response) => {

@@ -3,6 +3,7 @@ import { IUser } from "./user";
 
 export interface IOrder {
     user?: IUser;
+    status?: string;
     totalPrice?: number;
 }
 const orderSchema = new Schema<IOrder>({
@@ -10,6 +11,7 @@ const orderSchema = new Schema<IOrder>({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    status: String,
     totalPrice: Number
 })
 const Order = model<IOrder>('Order', orderSchema);

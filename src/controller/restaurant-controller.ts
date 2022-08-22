@@ -3,7 +3,7 @@ import { Restaurant } from "../model/restaurant";
 
 class RestaurantController {
     getAll = async (req: Request, res: Response) => {
-        let restaurants = await Restaurant.find();
+        let restaurants = await Restaurant.find().populate('userOwn');
         res.status(200).json(restaurants);
     }
 
