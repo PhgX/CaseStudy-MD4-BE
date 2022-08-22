@@ -4,6 +4,7 @@ import Validate from "./checkSignup"
 import jwt from 'jsonwebtoken';
 import {SECRET_KEY} from "../middleware/auth";
 import { Request, Response } from 'express';
+import { Order } from '../model/order';
 
 class AuthController {
     register = async (req : Request, res : Response) => {
@@ -26,7 +27,12 @@ class AuthController {
                 await Validate.checkEmail(email) &&
                 Validate.ValidatePhone(phone)) {
                 userSignUp.password = await bcrypt.hash(userSignUp.password, 10);
-                await User.create(userSignUp)
+                let newUser = await User.create(userSignUp)
+                await Order.create({
+                    user: newUser._id,
+                    status: 'pending',
+                    totalPrice: 0
+                })
                 console.log('Sign Up Success!');
                 res.status(201).json({
                     status: 'success',

@@ -6,5 +6,5 @@ import cartController from "../controller/cart-controller";
 export const customerOrderRoute = Router();
 
 // customerOrderRoute.use(auth)
-customerOrderRoute.get('/products', productController.getAll);
+customerOrderRoute.get('/products', cartController.getAll);
 customerOrderRoute.post('/products', cartController.createNewOrder)

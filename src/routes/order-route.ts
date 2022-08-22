@@ -3,3 +3,4 @@ import orderController from "../controller/order-controller";
 
 export const orderRoute = Router();
 orderRoute.get('', orderController.getAll);
+orderRoute.get('/count', orderController.countOrderDetails)
